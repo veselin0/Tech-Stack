@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from './common';
 import * as actions from '../actions';
 
 class ListItem extends Component {
   render() {
-    console.log(this.props);
+    const { id, title } = this.props.library.item;
     return (
-      <CardSection>
-        <Text style={styles.titleStyle}>{this.props.library.item.title}</Text>
-      </CardSection>
+      <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
+        <View>
+          <CardSection>
+            <Text style={styles.titleStyle}>{title}</Text>
+          </CardSection>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
